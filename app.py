@@ -90,23 +90,21 @@ if st.button(lang["btn_analyze"], type="primary"):
                     success = cut_video_clip(
                         video_url, start_time=start_seconds, duration=duration, output_filename=final_clip_path)
 
-                    if success:
+if success:
                         st.success(lang["status_ready"].format(counter))
-
-                     # Sunucuyu yormadan doğrudan YouTube üzerinden o saniyeleri oynatır
+                        
                         with open(final_clip_path, 'r') as video_file:
                             target_url = video_file.read()
-                            
-                         st.video(target_url)
-
-                            st.download_button(
-                                label=lang["btn_download_clip"].format(
-                                    counter),
-                                data=video_bytes,
-                                file_name=clip_name,
-                                mime="video/mp4",
-                                key=f"btn_{counter}"
-                            )
+                        
+                        st.video(target_url)
+                        
+                        st.download_button(
+                            label=lang["btn_download_clip"].format(counter),
+                            data=target_url,
+                            file_name=f"link_{counter}.txt",
+                            mime="text/plain",
+                            key=f"btn_{counter}"
+                        )
                 st.balloons()
 
 # --- PRO MASAÜSTÜ TANITIM KARTI ---

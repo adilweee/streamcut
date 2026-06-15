@@ -94,9 +94,10 @@ if st.button(lang["btn_analyze"], type="primary"):
                         st.success(lang["status_ready"].format(counter))
 
                      # Sunucuyu yormadan doğrudan YouTube üzerinden o saniyeleri oynatır
-                           with open(final_clip_path, 'r') as video_file:
+                         with open(final_clip_path, 'r') as video_file:
                             target_url = video_file.read()
-                            st.video(target_url)
+                            
+                         st.video(target_url)
 
                             st.download_button(
                                 label=lang["btn_download_clip"].format(

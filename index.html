@@ -1,74 +1,107 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StreamCut AI - Masaüstü Editörünü İndir</title>
+    <title>StreamCut AI - Web Web Video Editörü</title>
     <style>
         body {
             background-color: #0f0f12;
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             text-align: center;
         }
-
         .container {
             max-width: 600px;
-            padding: 20px;
+            padding: 30px;
+            background: #1a1a24;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #2a2a3a;
         }
-
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 10px;
             background: linear-gradient(45deg, #ff4b4b, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         p {
             color: #9ca3af;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
-
-        .download-btn {
+        .upload-area {
+            border: 2px dashed #a855f7;
+            padding: 30px;
+            border-radius: 15px;
+            cursor: pointer;
+            background: #13131a;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+        .upload-area:hover {
+            border-color: #ff4b4b;
+            background: #1c1c28;
+        }
+        .btn {
             background: linear-gradient(135deg, #ff4b4b 0%, #8b5cf6 100%);
             color: white;
-            padding: 15px 40px;
-            font-size: 1.3rem;
+            padding: 12px 35px;
+            font-size: 1.1rem;
             font-weight: bold;
-            text-decoration: none;
+            border: none;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(255, 75, 75, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 75, 75, 0.3);
+            transition: 0.2s;
         }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+        input[type="file"] {
+            display: none;
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>StreamCut AI</h1>
-        <p>Yayınlarınızı yapay zeka gücüyle kesin, düzenleyin ve parlatın. Profesyonel masaüstü deneyimi şimdi hazır!
-        </p>
-
-        <!-- BURAYA KOPYALADIĞIN STANDART GOOGLE DRIVE LINKINI YAPIŞTIR -->
-        <a href="https://drive.google.com/drive/folders/1aVlirh8r5ppQRtvtiaaAqtR73lx704tz?usp=sharing" target="_blank"
-            class="download-btn">Google Drive Üzerinden
-            İndir</a>
+        <p>Videonuzu seçin ve yapay zeka destekli kesme işlemini doğrudan tarayıcınızda başlatın!</p>
+        
+        <label for="video-input" class="upload-area" id="drop-zone">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p id="file-name" style="margin: 10px 0 0 0;">Bir video dosyası sürükleyin veya seçin</p>
+        </label>
+        <input type="file" id="video-input" accept="video/*">
+        
+        <button class="btn" onclick="videoyuKes()">Videonun Boşluklarını Kes</button>
     </div>
-</body>
 
+    <script>
+        const videoInput = document.getElementById('video-input');
+        const fileName = document.getElementById('file-name');
+
+        videoInput.addEventListener('change', (e) => {
+            if(e.target.files.length > 0) {
+                fileName.innerText = e.target.files[0].name;
+                fileName.style.color = '#ff4b4b';
+            }
+        });
+
+        function videoyuKes() {
+            if(videoInput.files.length === 0) {
+                alert("Lütfen önce bir video dosyası seçin Adil!");
+                return;
+            }
+            alert("Harika! Ön yüzümüz hazır. Şimdi arkadaki Python mantığını buraya bağlayacağız.");
+        }
+    </script>
+</body>
 </html>

@@ -78,8 +78,7 @@ if st.button(lang["btn_analyze"], type="primary"):
                 moments_list = list(important_moments.items())[:3]
 
                 for counter, (timestamp, message_count) in enumerate(moments_list, 1):
-                    st.info(lang["status_preparing"].format(
-                        counter, 3, timestamp.time()))
+                    st.info(lang["status_preparing"].format(counter, 3, timestamp.time()))
 
                     start_seconds = 1500 + (counter * 30)
                     duration = 15
@@ -90,14 +89,14 @@ if st.button(lang["btn_analyze"], type="primary"):
                     success = cut_video_clip(
                         video_url, start_time=start_seconds, duration=duration, output_filename=final_clip_path)
 
-if success:
+                    if success:
                         st.success(lang["status_ready"].format(counter))
-                        
+
                         with open(final_clip_path, 'r') as video_file:
                             target_url = video_file.read()
-                        
+
                         st.video(target_url)
-                        
+
                         st.download_button(
                             label=lang["btn_download_clip"].format(counter),
                             data=target_url,
@@ -121,8 +120,6 @@ with st.expander(f"⚙️ {lang['desktop_title']}", expanded=True):
     except Exception:
         pass
 
-# --- 🚀 PROFESYONEL DEVELOPER FOOTER (GITHUB ALANI) ---
-# Not: Buradaki linkleri birazdan senin orijinal linklerinle güncelleyeceğiz Adil!
 # --- 🚀 PROFESYONEL DEVELOPER FOOTER (GITHUB ALANI) ---
 st.markdown(f"""
     <div class="footer">
